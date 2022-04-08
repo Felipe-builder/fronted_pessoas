@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 @Component({
-  selector: 'app-tabela',
+  selector: 'person-tabela',
   templateUrl: './tabela.component.html',
   styleUrls: ['./tabela.component.scss']
 })

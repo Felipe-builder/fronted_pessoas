@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-rodape',
+  selector: 'person-rodape',
   templateUrl: './rodape.component.html',
   styleUrls: ['./rodape.component.scss']
 })

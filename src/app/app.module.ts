@@ -14,7 +14,6 @@ import { RodapeComponent } from './shared/components/rodape/rodape.component';
 import { AlertaComponent } from './shared/components/alerta/alerta.component';
 import { TabelaComponent } from './shared/components/tabela/tabela.component';
 
-import { UsuariosModule } from './usuarios/usuarios.module';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     HttpClientModule,
     LayoutModule,
     MaterialModule,
-    AppRoutingModule,
-    UsuariosModule
+    AppRoutingModule
   ],
   entryComponents: [AlertaComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],

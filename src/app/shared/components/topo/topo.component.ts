@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
-  selector: 'app-topo',
+  selector: 'person-topo',
   templateUrl: './topo.component.html',
   styleUrls: ['./topo.component.scss']
 })
@@ -11,7 +11,7 @@ export class TopoComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   openSideNav() {

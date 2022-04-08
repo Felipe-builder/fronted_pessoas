@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-alerta',
+  selector: 'person-alerta',
   templateUrl: './alerta.component.html',
   styleUrls: ['./alerta.component.scss']
 })
