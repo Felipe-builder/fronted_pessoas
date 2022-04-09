@@ -1,29 +1,13 @@
 <mat-toolbar class="app-title">Cadastrar Usuário</mat-toolbar>
 <div class="main-div">
   <mat-card class="center width50" >
-    <form [formGroup]="cadastro" (ngSubmit)="salvar()" (ngReset)="reiniciarForm()">
+    <form autocomplete="off" novalidate [formGroup]="cadastro" (ngSubmit)="salvar()" (ngReset)="reiniciarForm()">
       <mat-card-content>
-          <mat-form-field class="full-width">
-            <mat-label>Nome</mat-label>
-            <input matInput placeholder="Nome" name="nome" formControlName="nome">
-            <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && validacao.hasError(f.nome, 'required')">Mensagem Erro</mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>E-mail</mat-label>
-            <input matInput placeholder="abc@example" formControlName="email">
-          </mat-form-field>
-          <mat-form-field class="full-width">
-              <mat-label>Senha</mat-label>
-              <input matInput type="password" name="senha" formControlName="senha">
-            </mat-form-field>
-          <mat-form-field class="full-width">
-              <mat-label>Senha</mat-label>
-              <input matInput type="password" name="confirmaSenhar" formControlName="confirmaSenha">
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>Número Telefone/Celular</mat-label>
-            <input matInput placeholder="(99)999999" name="telefone" formControlName="telefone">
-          </mat-form-field>
+          <person-input-text titulo="Nome" controlName="nome" [formGroup]="cadastro"></person-input-text>
+          <person-input-email titulo="Email" controlName="email" [formGroup]="cadastro"></person-input-email>
+          <person-input-password titulo="Senha" controlName="senha" [formGroup]="cadastro"></person-input-password>
+          <person-input-password titulo="Confirmar Senha" controlName="confirmaSenha" [formGroup]="cadastro"></person-input-password>
+          <person-input-fone titulo="Número Telefone/Celular" controlName="telefone" [formGroup]="cadastro"></person-input-fone>
         </mat-card-content>
         <mat-card-actions>
           <button type="submit" color="accent" mat-raised-button>Salvar</button>

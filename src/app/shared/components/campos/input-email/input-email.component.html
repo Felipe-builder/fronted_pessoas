@@ -1,0 +1,11 @@
+<div [formGroup]="formGroup">
+  <mat-form-field class="full-width">
+    <mat-label>{{titulo}}</mat-label>
+    <input matInput
+            placeholder="abc@email.com"
+            [name]="controlName"
+            [formControlName]="controlName">
+    <mat-error *ngIf="validacao.hasErrorValidar(formControl, 'required')">Campo obrigatório</mat-error>
+    <mat-error *ngIf="validacao.hasErrorValidar(formControl, 'email')">Não é um email válido</mat-error>
+  </mat-form-field>
+</div>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ValidarCamposService } from 'src/app/shared/components/campos/validar-campos.service';
 
 @Component({
-  selector: 'per-cadastro-usuarios',
+  selector: 'person-cadastro-usuarios',
   templateUrl: './cadastro-usuarios.component.html',
   styleUrls: ['./cadastro-usuarios.component.scss']
 })
