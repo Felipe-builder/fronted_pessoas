@@ -1,37 +1,28 @@
 <mat-toolbar class="app-title">Cadastrar Usuário</mat-toolbar>
 <div class="main-div">
   <mat-card class="center width50" >
-    <form [formGroup]="cadastro" (ngSubmited)="salvar()" (ngReset)="reiniciarForm()">
+    <form [formGroup]="cadastro" (ngSubmit)="salvar()" (ngReset)="reiniciarForm()">
       <mat-card-content>
           <mat-form-field class="full-width">
             <mat-label>Nome</mat-label>
             <input matInput placeholder="Nome" name="nome" formControlName="nome">
-
+            <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && validacao.hasError(f.nome, 'required')">Mensagem Erro</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
             <mat-label>E-mail</mat-label>
-            <input matInput placeholder="abc@example" [formControl]="email" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            <input matInput placeholder="abc@example" formControlName="email">
           </mat-form-field>
           <mat-form-field class="full-width">
               <mat-label>Senha</mat-label>
-              <input matInput [type]="hide ? 'password' : 'text'" #input maxlength="18" name="senha" formControlName="senha">
-              <mat-hint align="start">{{input.value?.length || 0}}/18</mat-hint>
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
+              <input matInput type="password" name="senha" formControlName="senha">
             </mat-form-field>
           <mat-form-field class="full-width">
               <mat-label>Senha</mat-label>
-              <input matInput [type]="hide ? 'password' : 'text'" #input maxlength="18" name="confirmaSenhar" formControlName="confirmaSenha">
-
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
+              <input matInput type="password" name="confirmaSenhar" formControlName="confirmaSenha">
           </mat-form-field>
           <mat-form-field class="full-width">
             <mat-label>Número Telefone/Celular</mat-label>
-            <input matInput placeholder="(99)999999" name="confirmaSenhar" formControlName="confirmaSenha">
+            <input matInput placeholder="(99)999999" name="telefone" formControlName="telefone">
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>

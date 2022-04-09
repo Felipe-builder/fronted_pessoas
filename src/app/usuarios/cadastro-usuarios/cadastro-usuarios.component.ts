@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { ValidarCamposService } from 'src/app/shared/components/campos/validar-campos.service';
 
 @Component({
   selector: 'per-cadastro-usuarios',
@@ -7,15 +8,18 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./cadastro-usuarios.component.scss']
 })
 export class CadastroUsuariosComponent implements OnInit {
-  hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
+
   cadastro: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    public validacao: ValidarCamposService,
+    private fb: FormBuilder
+  ) { }
 
-  get f() {
+  get f () {
     return this.cadastro.controls;
   }
+
   ngOnInit(): void {
 
     this.cadastro = this.fb.group({
@@ -27,13 +31,6 @@ export class CadastroUsuariosComponent implements OnInit {
     });
   }
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'Digite seu email';
-    }
-
-    return this.email.hasError('email') ? 'Email inválido' : '';
-  }
 
   salvar(): void {
     this.cadastro.markAllAsTouched();
