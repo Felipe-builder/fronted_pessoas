@@ -23,6 +23,15 @@ export class UsuariosService {
 
   listar(config: ConfigPrams): Observable<Usuario[]> {
     const configPrams = this.configService.configurarParametros(config);
+
     return this.http.get<Usuario[]>(url, {params: configPrams});
+  }
+
+  visualizar(id: string): Observable<Usuario> {
+    return this.http.get<Usuario>(url + id);
+  }
+
+  excluir(id: string): Observable<void> {
+    return this.http.delete<void>(url + id);
   }
 }

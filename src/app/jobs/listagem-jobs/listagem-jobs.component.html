@@ -1,4 +1,4 @@
-<mat-toolbar class="app-title">Usuários Cadastrados</mat-toolbar>
+<mat-toolbar class="app-title">Jobs Cadastrados</mat-toolbar>
 
 <mat-card class="float-left margin10 filtro-listagem" >
   <form autocomplete="off" novalidate [formGroup]="filtrosListagem" >
@@ -21,17 +21,16 @@
   </form>
 </mat-card>
 <div class="home-content"
-     *ngIf="usuarios.length ; else semRegistro">
+     *ngIf="jobs.length ; else semRegistro">
   <mat-card class="home-card"
-            *ngFor="let usuario of usuarios">
+            *ngFor="let job of jobs">
     <mat-card-header>
       <div mat-card-avatar></div>
-      <mat-card-title>{{usuario.nome}}</mat-card-title>
-      <mat-card-subtitle>{{usuario.email}}</mat-card-subtitle>
+      <mat-card-title>{{job.nome}}</mat-card-title>
+      <mat-card-subtitle>{{job.usuario.nome}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="usuario.urlFoto || semFoto" >
     <mat-card-actions>
-      <button color="accent" mat-raised-button (click)="abrir(usuario._id)" >ABRIR</button>
+      <button color="accent" mat-raised-button  >ABRIR</button>
     </mat-card-actions>
   </mat-card>
 </div>

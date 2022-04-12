@@ -1,10 +1,11 @@
 export interface Usuario {
-  id?: number;
+  _id?: string;
   nome: string;
   email: string;
   senha: string;
   telefone: number;
+  urlFoto?: string;
   createdAt?: Date;
   updatedAt?: Date;
-  v?: number;
+  __v?: number;
 }
