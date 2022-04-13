@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+
 
 import { CamposModule } from '../shared/components/campos/campos.module';
 import { MaterialModule } from '../shared/material/material.module';
@@ -22,6 +24,7 @@ import { VisualizarJobsComponent } from './visualizar-jobs/visualizar-jobs.compo
     FormsModule,
     MaterialModule,
     CamposModule,
+    NgxMaterialTimepickerModule
   ]
 })
 export class JobsModule { }

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+
 import { InputTextComponent } from './input-text/input-text.component';
 import { MaterialModule } from '../../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,6 +10,7 @@ import { InputPasswordComponent } from './input-password/input-password.componen
 import { InputFoneComponent } from './input-fone/input-fone.component';
 import { InputSelectComponent } from './input-select/input-select.component';
 import { InputDateComponent } from './input-date/input-date.component';
+import { InputHoursComponent } from './input-hours/input-hours.component';
 
 
 
@@ -18,13 +21,15 @@ import { InputDateComponent } from './input-date/input-date.component';
     InputPasswordComponent,
     InputFoneComponent,
     InputSelectComponent,
-    InputDateComponent
+    InputDateComponent,
+    InputHoursComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxMaterialTimepickerModule
   ],
   exports: [
     InputTextComponent,
@@ -32,7 +37,8 @@ import { InputDateComponent } from './input-date/input-date.component';
     InputPasswordComponent,
     InputFoneComponent,
     InputSelectComponent,
-    InputDateComponent
+    InputDateComponent,
+    InputHoursComponent
   ]
 })
 export class CamposModule { }

@@ -6,9 +6,9 @@
           <person-input-text titulo="Nome" controlName="nome" [formGroup]="cadastro"></person-input-text>
           <person-input-text titulo="Usuário" controlName="usuario" [formGroup]="cadastro"></person-input-text>
           <person-input-select titulo="Status" [opcoes]="status" controlName="status" [formGroup]="cadastro"></person-input-select>
-          <person-input-select titulo="Tipo de Recorrência" [opcoes]="tipoRecorrencia" controlName="tipoRecorrencia" [formGroup]="cadastro"></person-input-select>
-          <person-input-date titulo="Valor de Horário Fixo" controlName="valorHorarioFixo" [formGroup]="cadastro"></person-input-date>
-          <person-input-date titulo="Valor de Intervalo" controlName="valorIntervalo" [formGroup]="cadastro"></person-input-date>
+          <person-input-select class="tipo" titulo="Tipo de Recorrência" [opcoes]="tipoRecorrencia" controlName="tipoRecorrencia" [formGroup]="cadastro"></person-input-select>
+          <person-input-hours titulo="Valor de Intervalo" controlName="valorIntervalo" [formGroup]="cadastro"></person-input-hours>
+          <person-input-hours titulo="Valor das Horas" controlName="valorHorarioFixo" [formGroup]="cadastro"></person-input-hours>
         </mat-card-content>
         <mat-card-actions>
           <button type="submit" color="accent" mat-raised-button>Salvar</button>

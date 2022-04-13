@@ -1,6 +1,10 @@
 <mat-list *ngIf="job; else semRegistro">
   <mat-list-item> Nome: {{job.nome}} </mat-list-item>
-  <mat-list-item> Usuário: {{job.usuario }} </mat-list-item>
+  <mat-list-item> Usuário: {{job.usuario.nome }} </mat-list-item>
+  <mat-list-item> Email: {{job.usuario.email }} </mat-list-item>
+  <mat-list-item> Telefone: {{job.usuario.telefone }} </mat-list-item>
+  <mat-list-item> Data de Cadastro do usuário: {{ job.usuario.createdAt | date: 'dd/MM/yyyy' }} </mat-list-item>
+
   <mat-list-item> Status: {{job.status}} </mat-list-item>
   <mat-list-item > Tipo de recorrência: {{job.tipoRecorrencia}} </mat-list-item>
   <!-- <mat-list-item> Valor da recorrência: {{job.v}} </mat-list-item> -->
