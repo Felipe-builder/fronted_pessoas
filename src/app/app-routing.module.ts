@@ -7,6 +7,7 @@ import { ListagemUsuariosComponent } from './usuarios/listagem-usuarios/listagem
 import { ListagemJobsComponent } from './jobs/listagem-jobs/listagem-jobs.component';
 import { CadastroJobsComponent } from './jobs/cadastro-jobs/cadastro-jobs.component';
 import { VisualizarUsuariosComponent } from './usuarios/visualizar-usuarios/visualizar-usuarios.component';
+import { VisualizarJobsComponent } from './jobs/visualizar-jobs/visualizar-jobs.component';
 
 const routes: Routes = [
   {
@@ -23,12 +24,21 @@ const routes: Routes = [
     },
     {
       path: 'cadastro',
-      component: CadastroUsuariosComponent,
-      pathMatch: 'full'
+      children: [
+        {
+          path: '',
+          component: CadastroUsuariosComponent
+        },
+        {
+          path: ':id',
+          component: CadastroUsuariosComponent
+        }
+      ]
     },
     {
       path: ':id',
-      component: VisualizarUsuariosComponent
+      component: VisualizarUsuariosComponent,
+      pathMatch: 'full'
     }
   ]
 },
@@ -41,7 +51,20 @@ const routes: Routes = [
     },
     {
       path: 'cadastro',
-      component: CadastroJobsComponent,
+      children: [
+        {
+          path: '',
+          component: CadastroJobsComponent
+        },
+        {
+          path: ':id',
+          component: CadastroJobsComponent
+        }
+      ]
+    },
+    {
+      path: ':id',
+      component: VisualizarJobsComponent,
       pathMatch: 'full'
     }
   ]

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConfigPrams } from '../shared/models/config-params';
-import { Jobs } from '../shared/models/jobs';
+import { Job } from '../shared/models/job';
 import { ConfigParamsService } from './config-params.service';
 
 const url = 'http://localhost:3000/jobs/';
@@ -17,13 +17,25 @@ export class JobsService {
     private configService: ConfigParamsService
   ) { }
 
-  salvar(jobs: Jobs): Observable<Jobs> {
-    return this.http.post<Jobs>(url, jobs);
+  salvar(job: Job): Observable<Job> {
+    return this.http.post<Job>(url, job);
   }
 
-  listar(config: ConfigPrams): Observable<Jobs[]> {
+  editar(job: Job): Observable<Job> {
+    return this.http.put<Job>(url + job._id, job);
+  }
+
+  listar(config: ConfigPrams): Observable<Job[]> {
     const configPrams = this.configService.configurarParametros(config);
 
-    return this.http.get<Jobs[]>(url, {params: configPrams});
+    return this.http.get<Job[]>(url, {params: configPrams});
+  }
+
+  visualizar(id: string): Observable<Job> {
+    return this.http.get<Job>(url + id);
+  }
+
+  excluir(id: string): Observable<void> {
+    return this.http.delete<void>(url + id);
   }
 }

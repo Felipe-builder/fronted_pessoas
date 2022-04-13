@@ -1,0 +1,19 @@
+<mat-list *ngIf="job; else semRegistro">
+  <mat-list-item> Nome: {{job.nome}} </mat-list-item>
+  <mat-list-item> Usuário: {{job.usuario }} </mat-list-item>
+  <mat-list-item> Status: {{job.status}} </mat-list-item>
+  <mat-list-item > Tipo de recorrência: {{job.tipoRecorrencia}} </mat-list-item>
+  <!-- <mat-list-item> Valor da recorrência: {{job.v}} </mat-list-item> -->
+  <mat-list-item> Data de Cadastro: {{ job.createdAt | date: 'dd/MM/yyyy' }} </mat-list-item>
+
+</mat-list>
+<mat-card>
+  <mat-card-actions>
+    <button color="accent" mat-raised-button (click)="editar()">Editar</button>
+    <button color="warn" mat-raised-button (click)="excluir()" >Excluir</button>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template #semRegistro>
+  <h1 class="full-width main-div">Nenhum registro encontrado!</h1>
+</ng-template>

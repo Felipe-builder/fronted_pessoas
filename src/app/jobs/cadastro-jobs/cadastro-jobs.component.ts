@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JobsService } from 'src/app/core/jobs.service';
 import { AlertaComponent } from 'src/app/shared/components/alerta/alerta.component';
 import { ValidarCamposService } from 'src/app/shared/components/campos/validar-campos.service';
 import { Alerta } from 'src/app/shared/models/alerta';
-import { Jobs } from 'src/app/shared/models/jobs';
+import { Job } from 'src/app/shared/models/job';
 
 @Component({
   selector: 'person-cadastro-jobs',
@@ -15,6 +15,7 @@ import { Jobs } from 'src/app/shared/models/jobs';
 })
 export class CadastroJobsComponent implements OnInit {
 
+  id: string;
   cadastro: FormGroup;
   status: Array<string>;
   tipoRecorrencia: Array<string>;
@@ -24,7 +25,8 @@ export class CadastroJobsComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     private jobsService: JobsService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   get f () {
@@ -32,19 +34,17 @@ export class CadastroJobsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.cadastro = this.fb.group({
-      nome: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
-      usuario: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
-      status: ['', [Validators.required]],
-      tipoRecorrencia: ['', [Validators.required]],
-      valorRecorrencia: ['', [Validators.required]]
-    });
+    this.id = this.activatedRoute.snapshot.params['id'];
+    if (this.id) {
+      this.jobsService.visualizar(this.id)
+        .subscribe((job: Job) => this.criarFormulario(job));
+    } else {
+      this.criarFormulario(this.criarJobsEmBranco());
+    }
 
     this.status = ['ATIVO', 'INATIVO'];
-    this.tipoRecorrencia = ['Intervalo', 'Horário Fixo'];
+    this.tipoRecorrencia = ['INTERVALO', 'HORÁRIO FIXO'];
   }
-
 
   submit(): void {
     this.cadastro.markAllAsTouched();
@@ -53,7 +53,7 @@ export class CadastroJobsComponent implements OnInit {
     if (this.cadastro.invalid) {
       return;
     }
-    const jobs = this.cadastro.getRawValue() as Jobs;
+    const jobs = this.cadastro.getRawValue() as Job;
     this.salvar(jobs);
   }
 
@@ -61,7 +61,33 @@ export class CadastroJobsComponent implements OnInit {
     this.cadastro.reset();
   }
 
-  private salvar(jobs: Jobs): void {
+  private criarFormulario(job: Job): void {
+    this.cadastro = this.fb.group({
+      nome: [job.nome, [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
+      usuario: [job.usuario, [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
+      status: [job.status, [Validators.required]],
+      tipoRecorrencia: [job.tipoRecorrencia, [Validators.required]],
+      valorHorarioFixo: [job.valorHorarioFixo],
+      valorIntervalo: [job.valorIntervalo]
+    });
+  }
+
+  private criarJobsEmBranco(): Job {
+    return {
+      _id: null,
+      nome: null,
+      usuario: null,
+      status: null,
+      tipoRecorrencia: null,
+      valorHorarioFixo: null,
+      valorIntervalo: null,
+      createdAt: null,
+      updatedAt: null,
+      __v: null
+    } as Job;
+  }
+
+  private salvar(jobs: Job): void {
     this.jobsService.salvar(jobs).subscribe(() => {
       const config = {
         data: {
@@ -84,6 +110,30 @@ export class CadastroJobsComponent implements OnInit {
       const config = {
         data: {
           titulo: 'Erro ao salvar o registro!',
+          descricao: 'Não conseguimos salvar seu registro, favor tentar novamente mais tarde',
+          corBtnSucesso: 'warn',
+          btnSucesso: 'Fechar'
+        } as Alerta
+      };
+      this.dialog.open(AlertaComponent, config);
+    });
+  }
+
+  private editar(job: Job): void {
+    this.jobsService.editar(job).subscribe(() => {
+      const config = {
+        data: {
+          descricao: 'Seu registro foi atualizado com sucesso!',
+          btnSucesso: 'Ir para a listagem',
+        } as Alerta
+      };
+      const dialogRef = this.dialog.open(AlertaComponent, config);
+      dialogRef.afterClosed().subscribe((opcao: boolean) => this.router.navigateByUrl('jobs'));
+    },
+    () => {
+      const config = {
+        data: {
+          titulo: 'Erro ao editar o registro!',
           descricao: 'Não conseguimos salvar seu registro, favor tentar novamente mais tarde',
           corBtnSucesso: 'warn',
           btnSucesso: 'Fechar'

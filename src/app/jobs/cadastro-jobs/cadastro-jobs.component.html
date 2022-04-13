@@ -1,13 +1,14 @@
 <mat-toolbar class="app-title">Cadastrar Jobs</mat-toolbar>
 <div class="main-div">
-  <mat-card class="center width50" >
+  <mat-card class="center width50" *ngIf="cadastro">
     <form autocomplete="off" novalidate [formGroup]="cadastro" (ngSubmit)="submit()" (ngReset)="reiniciarForm()">
       <mat-card-content>
           <person-input-text titulo="Nome" controlName="nome" [formGroup]="cadastro"></person-input-text>
           <person-input-text titulo="Usuário" controlName="usuario" [formGroup]="cadastro"></person-input-text>
           <person-input-select titulo="Status" [opcoes]="status" controlName="status" [formGroup]="cadastro"></person-input-select>
           <person-input-select titulo="Tipo de Recorrência" [opcoes]="tipoRecorrencia" controlName="tipoRecorrencia" [formGroup]="cadastro"></person-input-select>
-          <person-input-date titulo="Valor de Recorrência" controlName="valorRecorrencia" [formGroup]="cadastro"></person-input-date>
+          <person-input-date titulo="Valor de Horário Fixo" controlName="valorHorarioFixo" [formGroup]="cadastro"></person-input-date>
+          <person-input-date titulo="Valor de Intervalo" controlName="valorIntervalo" [formGroup]="cadastro"></person-input-date>
         </mat-card-content>
         <mat-card-actions>
           <button type="submit" color="accent" mat-raised-button>Salvar</button>

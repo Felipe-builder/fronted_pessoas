@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { UsuariosService } from 'src/app/core/usuarios.service';
-import { Usuario } from 'src/app/shared/models/usuario';
-import { Alerta } from 'src/app/shared/models/alerta';
+import { JobsService } from 'src/app/core/jobs.service';
 import { AlertaComponent } from 'src/app/shared/components/alerta/alerta.component';
+import { Alerta } from 'src/app/shared/models/alerta';
+import { Job } from 'src/app/shared/models/job';
 
 @Component({
-  selector: 'person-visualizar-usuarios',
-  templateUrl: './visualizar-usuarios.component.html',
-  styleUrls: ['./visualizar-usuarios.component.scss']
+  selector: 'person-visualizar-jobs',
+  templateUrl: './visualizar-jobs.component.html',
+  styleUrls: ['./visualizar-jobs.component.scss']
 })
-export class VisualizarUsuariosComponent implements OnInit {
+export class VisualizarJobsComponent implements OnInit {
   readonly semFoto = 'https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true';
-  usuario: Usuario;
+  job: Job;
   id: string;
 
   constructor(
     public dialog: MatDialog,
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private usuariosServices: UsuariosService
+    private jobsService: JobsService
   ) { }
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class VisualizarUsuariosComponent implements OnInit {
   }
 
   editar(): void {
-    this.router.navigateByUrl('/usuarios/cadastro/' + this.id);
+    this.router.navigateByUrl('/jobs/cadastro/' + this.id);
   }
 
   excluir() {
@@ -46,14 +46,14 @@ export class VisualizarUsuariosComponent implements OnInit {
     const dialogRef = this.dialog.open(AlertaComponent, config);
     dialogRef.afterClosed().subscribe((opcao: boolean) => {
       if (opcao) {
-        this.usuariosServices.excluir(this.id)
-        .subscribe(() => this.router.navigateByUrl('/usuarios'));
+        this.jobsService.excluir(this.id)
+        .subscribe(() => this.router.navigateByUrl('/jobs'));
       }
     });
   }
 
   private visualizar(): void {
-    this.usuariosServices.visualizar(this.id).subscribe((usuario: Usuario) => this.usuario = usuario);
+    this.jobsService.visualizar(this.id).subscribe((job: Job) => this.job = job);
   }
 
 }

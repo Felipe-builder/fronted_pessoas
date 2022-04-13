@@ -1,4 +1,4 @@
-export interface Jobs {
+export interface Job {
   _id?: string;
   nome: string;
   usuario: any;

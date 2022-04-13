@@ -7,12 +7,14 @@ import { MaterialModule } from '../shared/material/material.module';
 
 import { ListagemJobsComponent } from './listagem-jobs/listagem-jobs.component';
 import { CadastroJobsComponent } from './cadastro-jobs/cadastro-jobs.component';
+import { VisualizarJobsComponent } from './visualizar-jobs/visualizar-jobs.component';
 
 
 @NgModule({
   declarations: [
     ListagemJobsComponent,
-    CadastroJobsComponent
+    CadastroJobsComponent,
+    VisualizarJobsComponent
   ],
   imports: [
     CommonModule,

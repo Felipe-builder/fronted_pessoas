@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
 import { JobsService } from 'src/app/core/jobs.service';
 import { ConfigPrams } from 'src/app/shared/models/config-params';
-import { Jobs } from 'src/app/shared/models/jobs';
+import { Job } from 'src/app/shared/models/job';
 
 @Component({
   selector: 'person-listagem-jobs',
@@ -17,13 +18,16 @@ export class ListagemJobsComponent implements OnInit {
     pagina: 0,
     limite: 4
   };
-  jobs: Jobs[] = [];
+  jobs: Job[] = [];
   filtrosListagem: FormGroup;
   nome: string;
+  status: Array<string>;
+  tipoRecorrencia: Array<string>;
 
   constructor(
     private jobsService: JobsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +48,9 @@ export class ListagemJobsComponent implements OnInit {
       this.resetarConsulta();
     });
 
+    this.status = ['ATIVO', 'INATIVO'];
+    this.tipoRecorrencia = ['INTERVALO', 'HORÁRIO FIXO'];
+
     this.listarJobs();
   }
 
@@ -51,10 +58,14 @@ export class ListagemJobsComponent implements OnInit {
     this.listarJobs();
   }
 
+  abrir(id: string): void {
+    this.router.navigateByUrl('/jobs/' + id);
+  }
+
   private listarJobs(): void {
     this.config.pagina++;
     this.jobsService.listar(this.config)
-                        .subscribe((jobs: Jobs[]) => this.jobs.push(...jobs));
+                        .subscribe((jobs: Job[]) => this.jobs.push(...jobs));
   }
 
   private resetarConsulta(): void {

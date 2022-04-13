@@ -21,6 +21,10 @@ export class UsuariosService {
     return this.http.post<Usuario>(url, usuario);
   }
 
+  editar(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(url + usuario._id, usuario);
+  }
+
   listar(config: ConfigPrams): Observable<Usuario[]> {
     const configPrams = this.configService.configurarParametros(config);
 
