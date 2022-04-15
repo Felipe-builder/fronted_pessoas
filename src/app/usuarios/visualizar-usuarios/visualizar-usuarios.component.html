@@ -8,8 +8,11 @@
 </mat-list>
 <mat-card>
   <mat-card-actions>
-    <button color="accent" mat-raised-button>Editar</button>
+    <button color="accent" mat-raised-button (click)="editar()">Editar</button>
     <button color="warn" mat-raised-button (click)="excluir()" >Excluir</button>
+  </mat-card-actions>
+  <mat-card-actions id="cadastra">
+    <button color="primary" mat-raised-button (click)="cadastrarJob()" >Cadastrar Job</button>
   </mat-card-actions>
 </mat-card>
 

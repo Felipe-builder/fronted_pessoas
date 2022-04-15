@@ -14,10 +14,7 @@ import { Router } from '@angular/router';
 export class ListagemUsuariosComponent implements OnInit {
   readonly semFoto = 'https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true';
 
-  config: ConfigPrams = {
-    pagina: 0,
-    limite: 4
-  };
+  config: ConfigPrams = { };
   usuarios: Usuario[] = [];
   filtrosListagem: FormGroup;
   nome: string;
@@ -42,7 +39,8 @@ export class ListagemUsuariosComponent implements OnInit {
         });
 
     this.filtrosListagem.get('dataCriacao').valueChanges.subscribe((val: string) => {
-      this.config.campo = {tipo: 'dataCriacao', valor: val};
+      this.config.rt = 'busca-data';
+      this.config.campo = {tipo: 'dt_criacao', valor: val};
       this.resetarConsulta();
     });
 

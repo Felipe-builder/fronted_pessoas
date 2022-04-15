@@ -28,7 +28,11 @@ export class JobsService {
   listar(config: ConfigPrams): Observable<Job[]> {
     const configPrams = this.configService.configurarParametros(config);
 
-    return this.http.get<Job[]>(url, {params: configPrams});
+    if (config.rt === "busca-data") {
+      return this.http.get<Job[]>(url + config.rt, {params: configPrams});
+    } else {
+      return this.http.get<Job[]>(url, {params: configPrams});
+    }
   }
 
   visualizar(id: string): Observable<Job> {

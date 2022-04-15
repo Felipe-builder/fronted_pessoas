@@ -7,7 +7,8 @@
 
   <mat-list-item> Status: {{job.status}} </mat-list-item>
   <mat-list-item > Tipo de recorrência: {{job.tipoRecorrencia}} </mat-list-item>
-  <!-- <mat-list-item> Valor da recorrência: {{job.v}} </mat-list-item> -->
+  <mat-list-item> Valor de Horário Fixo: {{job.valorHorarioFixo | date: 'HH:mm'}} </mat-list-item>
+  <mat-list-item> Valor de Intervalo: {{job.valorIntervalo}} </mat-list-item>
   <mat-list-item> Data de Cadastro: {{ job.createdAt | date: 'dd/MM/yyyy' }} </mat-list-item>
 
 </mat-list>

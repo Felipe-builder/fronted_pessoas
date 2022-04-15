@@ -14,10 +14,7 @@ import { Job } from 'src/app/shared/models/job';
 export class ListagemJobsComponent implements OnInit {
 
 
-  config: ConfigPrams = {
-    pagina: 0,
-    limite: 4
-  };
+  config: ConfigPrams = {};
   jobs: Job[] = [];
   filtrosListagem: FormGroup;
   nome: string;
@@ -44,7 +41,8 @@ export class ListagemJobsComponent implements OnInit {
         });
 
     this.filtrosListagem.get('dataCriacao').valueChanges.subscribe((val: string) => {
-      this.config.campo = {tipo: 'dataCriacao', valor: val};
+      this.config.rt = 'busca-data';
+      this.config.campo = {tipo: 'dt_criacao', valor: val};
       this.resetarConsulta();
     });
 

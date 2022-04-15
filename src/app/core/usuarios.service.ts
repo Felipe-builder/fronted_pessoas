@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Usuario } from '../shared/models/usuario';
 import { ConfigPrams } from '../shared/models/config-params';
 import { ConfigParamsService } from './config-params.service';
+declare var require: any;
+const moment = require('moment');
 
 const url = 'http://localhost:3000/usuarios/';
 
@@ -27,8 +29,16 @@ export class UsuariosService {
 
   listar(config: ConfigPrams): Observable<Usuario[]> {
     const configPrams = this.configService.configurarParametros(config);
+    if (config.rt === "busca-data") {
+      return this.http.get<Usuario[]>(url + config.rt, {params: configPrams});
+    } else {
+      return this.http.get<Usuario[]>(url, {params: configPrams});
+    }
+  }
 
-    return this.http.get<Usuario[]>(url, {params: configPrams});
+  listarPorDataCriacao(dataCriacao: Date): Observable<Usuario> {
+    const data = moment(dataCriacao).format('yyyy-MM-dd');
+    return this.http.get<Usuario>(`${url}busca-data?dt_criacao=${data}`);
   }
 
   visualizar(id: string): Observable<Usuario> {

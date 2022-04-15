@@ -6,6 +6,7 @@ import { UsuariosService } from 'src/app/core/usuarios.service';
 import { Usuario } from 'src/app/shared/models/usuario';
 import { Alerta } from 'src/app/shared/models/alerta';
 import { AlertaComponent } from 'src/app/shared/components/alerta/alerta.component';
+import { Job } from 'src/app/shared/models/job';
 
 @Component({
   selector: 'person-visualizar-usuarios',
@@ -15,6 +16,7 @@ import { AlertaComponent } from 'src/app/shared/components/alerta/alerta.compone
 export class VisualizarUsuariosComponent implements OnInit {
   readonly semFoto = 'https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true';
   usuario: Usuario;
+  job: Job;
   id: string;
 
   constructor(
@@ -50,6 +52,10 @@ export class VisualizarUsuariosComponent implements OnInit {
         .subscribe(() => this.router.navigateByUrl('/usuarios'));
       }
     });
+  }
+
+  cadastrarJob(): void {
+    this.router.navigateByUrl('/jobs/cadastro/');
   }
 
   private visualizar(): void {
