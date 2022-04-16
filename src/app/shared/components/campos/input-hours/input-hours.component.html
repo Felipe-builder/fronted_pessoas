@@ -6,21 +6,21 @@
             readonly
             placeholder="Horas"
             [name]="controlName"
-            [formControl]="formControlItem"
             [formControlName]="controlName">
+
     <mat-icon
       matPrefix
-      *ngIf="formControlItem.value && !formControlItem.disabled"
+      *ngIf="this.formGroup.controls[this.controlName].value && !this.formGroup.controls[this.controlName].disabled"
       (click)="onClear($event)">
         close
     </mat-icon>
 
+
     <mat-icon
       matSuffix
-      *ngIf="!formControlItem.disabled"
+      *ngIf="!this.formGroup.controls[this.controlName].disabled"
       >schedule</mat-icon>
     <ngx-material-timepicker #picker></ngx-material-timepicker>
-
     <mat-error *ngIf="validacao.hasErrorValidar(formControl, 'required')">Campo obrigatório</mat-error>
     <mat-error *ngIf="validacao.hasErrorValidar(formControl, 'email')">Não é um email válido</mat-error>
   </mat-form-field>

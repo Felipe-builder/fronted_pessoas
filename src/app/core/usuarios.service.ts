@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../shared/models/usuario';
-import { ConfigPrams } from '../shared/models/config-params';
+import { ConfigParams } from '../shared/models/config-params';
 import { ConfigParamsService } from './config-params.service';
 declare var require: any;
 const moment = require('moment');
@@ -27,12 +27,14 @@ export class UsuariosService {
     return this.http.put<Usuario>(url + usuario._id, usuario);
   }
 
-  listar(config: ConfigPrams): Observable<Usuario[]> {
-    const configPrams = this.configService.configurarParametros(config);
+  listar(config: ConfigParams): Observable<Usuario[]> {
+    const configParams = this.configService.configurarParametros(config);
     if (config.rt === "busca-data") {
-      return this.http.get<Usuario[]>(url + config.rt, {params: configPrams});
+      return this.http.get<Usuario[]>(url + config.rt, {params: configParams});
+    } else if (config.rt === "busca-nome") {
+      return this.http.post<Usuario[]>(url + config.rt, { "nome": config.pesquisa });
     } else {
-      return this.http.get<Usuario[]>(url, {params: configPrams});
+      return this.http.get<Usuario[]>(url, {params: configParams});
     }
   }
 

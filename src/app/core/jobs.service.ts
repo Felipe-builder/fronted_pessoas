@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ConfigPrams } from '../shared/models/config-params';
+import { ConfigParams } from '../shared/models/config-params';
 import { Job } from '../shared/models/job';
 import { ConfigParamsService } from './config-params.service';
 
@@ -25,11 +25,13 @@ export class JobsService {
     return this.http.put<Job>(url + job._id, job);
   }
 
-  listar(config: ConfigPrams): Observable<Job[]> {
+  listar(config: ConfigParams): Observable<Job[]> {
     const configPrams = this.configService.configurarParametros(config);
 
     if (config.rt === "busca-data") {
       return this.http.get<Job[]>(url + config.rt, {params: configPrams});
+    } else if (config.rt === "busca-nome") {
+      return this.http.post<Job[]>(url + config.rt, { "nome": config.pagina });
     } else {
       return this.http.get<Job[]>(url, {params: configPrams});
     }

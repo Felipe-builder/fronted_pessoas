@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
 import { JobsService } from 'src/app/core/jobs.service';
-import { ConfigPrams } from 'src/app/shared/models/config-params';
+import { ConfigParams } from 'src/app/shared/models/config-params';
 import { Job } from 'src/app/shared/models/job';
 
 @Component({
@@ -14,7 +14,7 @@ import { Job } from 'src/app/shared/models/job';
 export class ListagemJobsComponent implements OnInit {
 
 
-  config: ConfigPrams = {};
+  config: ConfigParams = {};
   jobs: Job[] = [];
   filtrosListagem: FormGroup;
   nome: string;
@@ -36,6 +36,7 @@ export class ListagemJobsComponent implements OnInit {
     this.filtrosListagem.get('texto').valueChanges
         .pipe(debounceTime(300))
         .subscribe((val: string) => {
+          this.config.rt = 'busca-nome';
           this.config.pesquisa = val;
           this.resetarConsulta();
         });

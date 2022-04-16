@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { UsuariosService } from 'src/app/core/usuarios.service';
 import { Usuario } from 'src/app/shared/models/usuario';
-import { ConfigPrams } from 'src/app/shared/models/config-params';
+import { ConfigParams } from 'src/app/shared/models/config-params';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class ListagemUsuariosComponent implements OnInit {
   readonly semFoto = 'https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true';
 
-  config: ConfigPrams = { };
+  config: ConfigParams = { };
   usuarios: Usuario[] = [];
   filtrosListagem: FormGroup;
   nome: string;
@@ -34,6 +34,7 @@ export class ListagemUsuariosComponent implements OnInit {
     this.filtrosListagem.get('texto').valueChanges
         .pipe(debounceTime(300))
         .subscribe((val: string) => {
+          this.config.rt = 'busca-nome';
           this.config.pesquisa = val;
           this.resetarConsulta();
         });

@@ -1,6 +1,6 @@
 import { CampoGenerico } from './campo-generico';
 
-export interface ConfigPrams {
+export interface ConfigParams {
   rt?: string;
   pagina?: number;
   limite?: number;

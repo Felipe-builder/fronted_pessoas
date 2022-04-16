@@ -12,6 +12,8 @@ export class InputHoursComponent {
   @Input() formGroup: FormGroup;
   @Input() controlName: string;
 
+  novaData: Date;
+  data: any;
   formControlItem: FormControl = new FormControl("");
 
 
@@ -20,16 +22,23 @@ export class InputHoursComponent {
   ) { }
 
   get formControl(): AbstractControl {
+    this.novaData = new Date();
+    this.data = this.formGroup.controls[this.controlName].value;
+    if (typeof this.data === 'string') {
+      this.data = this.data.split(':');
+      this.novaData.setHours(this.data[0], this.data[1]);
+      console.log(this.formGroup.controls[this.controlName].value);
+    }
     return this.formGroup.controls[this.controlName];
   }
 
   openFromIcon(timepicker: { open: () => void }) {
-    if (!this.formControlItem.disabled) {
+    if (!this.formGroup.controls[this.controlName].disabled) {
       timepicker.open();
     }
   }
 
   onClear($event: Event) {
-    this.formControlItem.setValue(null);
+    this.formGroup.controls[this.controlName].setValue(null);
   }
 }
