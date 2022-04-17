@@ -30,8 +30,8 @@ export class JobsService {
 
     if (config.rt === "busca-data") {
       return this.http.get<Job[]>(url + config.rt, {params: configPrams});
-    } else if (config.rt === "busca-nome") {
-      return this.http.post<Job[]>(url + config.rt, { "nome": config.pagina });
+    } else if (config.rt === "busca-usuario-nome") {
+      return this.http.get<Job[]>(url + config.rt, { params: configPrams});
     } else {
       return this.http.get<Job[]>(url, {params: configPrams});
     }

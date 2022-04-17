@@ -36,8 +36,8 @@ export class ListagemJobsComponent implements OnInit {
     this.filtrosListagem.get('texto').valueChanges
         .pipe(debounceTime(300))
         .subscribe((val: string) => {
-          this.config.rt = 'busca-nome';
-          this.config.pesquisa = val;
+          this.config.rt = 'busca-usuario-nome';
+          this.config.campo = {tipo: 'usuario_nome', valor: val};
           this.resetarConsulta();
         });
 

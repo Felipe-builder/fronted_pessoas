@@ -16,6 +16,7 @@ import { Job } from 'src/app/shared/models/job';
 })
 export class CadastroJobsComponent implements OnInit {
 
+  usuarioId: string;
   id: string;
   cadastro: FormGroup;
   status: Array<string>;
@@ -36,6 +37,9 @@ export class CadastroJobsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['id'];
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.usuarioId = params.id;
+    });
     if (this.id) {
       this.jobsService.visualizar(this.id)
         .subscribe((job: Job) => this.criarFormulario(job));
@@ -69,7 +73,7 @@ export class CadastroJobsComponent implements OnInit {
   private criarFormulario(job: Job): void {
     this.cadastro = this.fb.group({
       nome: [job.nome, [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
-      usuario: [job.usuario, [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
+      usuario: [this.usuarioId, [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
       status: [job.status, [Validators.required]],
       tipoRecorrencia: [job.tipoRecorrencia, [Validators.required]],
       valorHorarioFixo: [job.valorHorarioFixo],
