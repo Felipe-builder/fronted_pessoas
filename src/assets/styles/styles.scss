@@ -17,6 +17,12 @@ body {
   width: 75%;
 }
 
+.button-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-div {
   display: flex;
   justify-content: center;
@@ -41,4 +47,8 @@ body {
 
 .quebrar-linha {
   white-space: pre-line;
+}
+
+.secundary {
+  background-color: #AF8BF5;
 }

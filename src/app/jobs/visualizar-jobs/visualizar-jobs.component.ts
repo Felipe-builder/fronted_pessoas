@@ -33,6 +33,10 @@ export class VisualizarJobsComponent implements OnInit {
     this.router.navigateByUrl('/jobs/cadastro/' + this.id);
   }
 
+  voltar(): void {
+    this.router.navigateByUrl('/jobs');
+  }
+
   excluir() {
     const config = {
       data: {

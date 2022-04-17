@@ -4,7 +4,6 @@
     <form autocomplete="off" novalidate [formGroup]="cadastro" (ngSubmit)="submit()" (ngReset)="reiniciarForm()">
       <mat-card-content>
           <person-input-text titulo="Nome" controlName="nome" [formGroup]="cadastro"></person-input-text>
-          <person-input-text titulo="Usuário" controlName="usuario" [formGroup]="cadastro"></person-input-text>
           <person-input-select titulo="Status" [opcoes]="status" controlName="status" [formGroup]="cadastro"></person-input-select>
           <person-input-select titulo="Tipo de Recorrência" [opcoes]="tipoRecorrencia" controlName="tipoRecorrencia" [formGroup]="cadastro"></person-input-select>
           <person-input-hours titulo="Valor de Intervalo" controlName="valorIntervalo" [formGroup]="cadastro"></person-input-hours>
@@ -13,6 +12,8 @@
         <mat-card-actions>
           <button type="submit" color="accent" mat-raised-button>Salvar</button>
           <button type="reset" color="warn" mat-raised-button>Cancelar</button>
+          <button class="secundary" style="float: right;" (click)="voltar()" mat-raised-button>Voltar</button>
+
         </mat-card-actions>
       </form>
   </mat-card>

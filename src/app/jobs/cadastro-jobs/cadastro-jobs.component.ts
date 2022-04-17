@@ -70,6 +70,10 @@ export class CadastroJobsComponent implements OnInit {
     this.cadastro.reset();
   }
 
+  voltar(): void {
+    this.router.navigateByUrl('/usuarios/' + this.usuarioId);
+  }
+
   private criarFormulario(job: Job): void {
     this.cadastro = this.fb.group({
       nome: [job.nome, [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],

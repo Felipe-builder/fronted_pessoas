@@ -59,6 +59,10 @@ export class CadastroUsuariosComponent implements OnInit {
     this.cadastro.reset();
   }
 
+  voltar(): void {
+    this.router.navigateByUrl('/usuarios');
+  }
+
   private criarFormulario(usuario: Usuario): void {
     this.cadastro = this.fb.group({
       nome: [usuario.nome, [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],

@@ -54,6 +54,10 @@ export class VisualizarUsuariosComponent implements OnInit {
     });
   }
 
+  voltar(): void {
+    this.router.navigateByUrl('/usuarios');
+  }
+
   cadastrarJob(): void {
     this.router.navigate(['/jobs/cadastro'], {queryParams: { id: this.id }});
   }
