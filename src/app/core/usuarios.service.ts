@@ -32,7 +32,7 @@ export class UsuariosService {
     if (config.rt === "busca-data") {
       return this.http.get<Usuario[]>(url + config.rt, {params: configParams});
     } else if (config.rt === "busca-nome") {
-      return this.http.post<Usuario[]>(url + config.rt, { "nome": config.pesquisa });
+      return this.http.get<Usuario[]>(url + config.rt, { params: configParams });
     } else {
       return this.http.get<Usuario[]>(url, {params: configParams});
     }

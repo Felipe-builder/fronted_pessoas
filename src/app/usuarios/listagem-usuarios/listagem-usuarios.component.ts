@@ -35,15 +35,16 @@ export class ListagemUsuariosComponent implements OnInit {
         .pipe(debounceTime(300))
         .subscribe((val: string) => {
           this.config.rt = 'busca-nome';
-          this.config.pesquisa = val;
+          this.config.campo = {tipo: 'nome', valor: val};
           this.resetarConsulta();
         });
 
-    this.filtrosListagem.get('dataCriacao').valueChanges.subscribe((val: string) => {
-      this.config.rt = 'busca-data';
-      this.config.campo = {tipo: 'dt_criacao', valor: val};
-      this.resetarConsulta();
-    });
+    this.filtrosListagem.get('dataCriacao').valueChanges
+        .subscribe((val: string) => {
+          this.config.rt = 'busca-data';
+          this.config.campo = {tipo: 'dt_criacao', valor: val};
+          this.resetarConsulta();
+        });
 
     this.listarUsuarios();
   }

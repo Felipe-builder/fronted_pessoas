@@ -80,8 +80,8 @@ export class CadastroJobsComponent implements OnInit {
       usuario: [this.usuarioId, [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
       status: [job.status, [Validators.required]],
       tipoRecorrencia: [job.tipoRecorrencia, [Validators.required]],
-      valorHorarioFixo: [job.valorHorarioFixo],
-      valorIntervalo: [job.valorIntervalo]
+      valorHorarioFixo: null,
+      valorIntervalo: null
     });
   }
 
